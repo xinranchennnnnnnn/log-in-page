@@ -46,5 +46,83 @@
  
 
 </body>
+    
+//test    
+    
+    <!DOCTYPE html >
+ 2 <html lang="en">
+ 3 <head>
+ 4 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 5 <title>上传图片文件</title>
+ 6 </head>
+ 7 <?php
+ 8 if (isset($_FILES['imgfile']) 
+ 9 && is_uploaded_file($_FILES['imgfile']['tmp_name']))
+10 {
+11  $imgFile = $_FILES['imgfile'];
+12 $upErr = $imgFile['error'];
+13 if ($upErr == 0)
+14 {
+15 $imgType = $imgFile['type']; //文件类型。
+16 /* 判断文件类型，这个例子里仅支持jpg和gif类型的图片文件。*/
+17 if ($imgType == 'image/jpeg'
+18 || $imgType == 'image/gif')
+19 {
+20 $imgFileName = $imgFile['name'];
+21 $imgSize = $imgFile['size'];
+22 $imgTmpFile = $imgFile['tmp_name'];
+23 /* 将文件从临时文件夹移到上传文件夹中。*/
+24 move_uploaded_file($imgTmpFile, 'upfile/'.$imgFileName);
+25 /*显示上传后的文件的信息。*/
+26 $strPrompt = sprintf("文件%s上传成功<br>"
+27 . "文件大小: %s字节<br>"
+28 . "<img src='upfile/%s'>"
+29 , $imgFileName, $imgSize, $imgFileName
+30 );
+31 echo $strPrompt;
+32 }
+33 else
+34 {
+35 echo "请选择jpg或gif文件，不支持其它类型的文件。";
+36 }
+37 }
+38 else
+39 {
+40 echo "文件上传失败。<br>";
+41 switch ($upErr)
+42 {
+43 case 1:
+44  echo "超过了php.ini中设置的上传文件大小。";
+45 break;
+46 case 2:
+47  echo "超过了MAX_FILE_SIZE选项指定的文件大小。";
+48 break;
+49 case 3:
+50  echo "文件只有部分被上传。";
+51 break;
+52 case 4:
+53  echo "文件未被上传。";
+54 break;
+55 case 5:
+56  echo "上传文件大小为0";
+57 break;
+58 }
+59 }
+60 }
+61 else
+62 {
+63 /*显示表单。*/
+64 ?>
+65 <body>
+66 <form action="" method="post" enctype="multipart/form-data" name="upload_form">
+67  <label>选择图片文件</label>
+68  <input name="imgfile" type="file" accept="image/gif, image/jpeg"/>
+69   <input name="upload" type="submit" value="上传" />
+70 </form>
+71 </body>
+72 <?php
+73 }
+74 ?>
+75 </html>
 
 
