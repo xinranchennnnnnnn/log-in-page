@@ -45,9 +45,9 @@ window.addEventListener("load", () => {
   })
 })
 
-window.addEventListener("load", () => {
-  let uploadImageButton = document.getElementById("uploadImage");
-  uploadImageButton.addEventListener("click",  () => {
-   useruploadsImage();
- })
-})
+//window.addEventListener("load", () => {
+ // let uploadImageButton = document.getElementById("uploadImage");
+  //uploadImageButton.addEventListener("click",  () => {
+  // useruploadsImage();
+ //})
+//})
