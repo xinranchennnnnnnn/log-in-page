@@ -51,6 +51,19 @@
 </body>
 </html>
     
+    
+    
+    <script type="text/javascript">
+    function showImg(input) {
+        var file = input.files[0];
+        var reader = new FileReader()
+        // 图片读取成功回调函数
+        reader.onload = function(e) {
+            document.getElementById('upload').src=e.target.result
+        }
+        reader.readAsDataURL(file)
+    }
+</script>
  
 <a href="http://localhost/uploadimage.php"> Click here to upload your selfie!</a>
     
