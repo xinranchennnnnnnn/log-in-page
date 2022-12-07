@@ -37,7 +37,7 @@
         <!-- 自定义按钮效果 -->
         <div style="text-align: top">
             <span style="font-size: 12px;">上传文件：</span>
-            <img id="upload" src="./upload.png" style="width: 40px; height: 40px; vertical-align: middle;" />
+            <img id="upload" src="./upload.png" style="width: 200px; height: 120px; vertical-align: middle;" />
         </div>
     </div>
     <div id="imgContainer" style="margin-top: 10px;"></div>
@@ -54,7 +54,7 @@
         var elements = ''
         for (var i = 0; i < files.length; i++) {
             var url = window.URL.createObjectURL(files[i])
-            elements += "<img src='"+ url + "' style='width: 40px; height: 40px; vertical-align: middle; margin-right: 5px;' />"
+            elements += "<img src='"+ url + "' style='width: 200px; height: 120px; vertical-align: middle; margin-right: 5px;' />"
         }
         return elements
     }
